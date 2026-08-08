@@ -1,4 +1,4 @@
 #pull from arch docker container
-FROM archlinux:lates
+FROM archlinux:latest
 LABEL maintainer="GarretSidzaka"
 
