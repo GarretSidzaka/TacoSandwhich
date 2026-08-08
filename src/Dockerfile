@@ -21,3 +21,15 @@ ENV \
     LANG=en_US.UTF-8 \
     LANGUAGE=en_US:en \
     LC_ALL=en_US.UTF-8
+# Re-install certificates
+RUN \
+    echo "**** Install certificates ****" \
+	    && pacman -Syu --noconfirm --needed \
+            ca-certificates \
+    && \
+    echo "**** Section cleanup ****" \
+	    && pacman -Scc --noconfirm \
+        && rm -fr /var/lib/pacman/sync/* \
+        && rm -fr /var/cache/pacman/pkg/* \
+    && \
+    echo
