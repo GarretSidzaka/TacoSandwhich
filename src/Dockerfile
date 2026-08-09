@@ -149,6 +149,7 @@ RUN \
     && \
     echo
 
+
 # Install X Server requirements
 ENV \
     XORG_SOCKET_DIR="/tmp/.X11-unix" \
@@ -183,7 +184,6 @@ RUN \
             xorg-xwininfo \
             xf86-input-evdev \
             xterm \
-            gamescope \
     && \
     echo "**** Section cleanup ****" \
 	    && pacman -Scc --noconfirm \
@@ -225,11 +225,6 @@ RUN \
             xdg-utils \
             imagemagick \
     && \
-    echo "**** Install WoL Manager requirements ****" \
-            && pacman -Syu --noconfirm --needed \
-            tcpdump \
-            xprintidle \
-    && \
     echo "**** Section cleanup ****" \
 	    && pacman -Scc --noconfirm \
         && rm -fr /var/lib/pacman/sync/* \
@@ -258,3 +253,86 @@ RUN \
         && rm -fr /var/cache/pacman/pkg/* \
     && \
     echo
+
+# Install Steam
+RUN \
+    echo "**** Install Steam ****" \
+	    && pacman -Syu --noconfirm --needed \
+            steam \
+    && \
+    echo "**** Section cleanup ****" \
+	    && pacman -Scc --noconfirm \
+        && rm -fr /var/lib/pacman/sync/* \
+        && rm -fr /var/cache/pacman/pkg/* \
+    && \
+    echo
+
+# Various other tools
+ARG DUMB_INIT_VERSION=1.2.5
+ARG DUMB_UDEV_VERSION=64d1427
+RUN \
+    echo "**** Install dumb-init ****" \
+        && wget --no-check-certificate --no-cookies --quiet \
+            -O /usr/bin/dumb-init \
+            https://github.com/Yelp/dumb-init/releases/download/v${DUMB_INIT_VERSION}/dumb-init_${DUMB_INIT_VERSION}_x86_64 \
+        && chmod +x /usr/bin/dumb-init \
+    && \
+    echo "**** Install dumb-udev ****" \
+        && python3 -m pip install \
+            --break-system-packages \
+            --pre \
+            --upgrade \
+            --no-cache-dir \
+            git+https://github.com/Steam-Headless/dumb-udev.git@${DUMB_UDEV_VERSION} \
+    && \
+    echo
+
+# Install Protonup replacement
+RUN \
+    echo "**** Install PorotonUP ****" \
+        && su - default -c "yay -Sy --noconfirm --needed --overwrite \"/usr/bin/normalizer\" protonup-qt" \
+    && \
+    echo "**** Section cleanup ****" \
+	    && pacman -Scc --noconfirm \
+        && rm -fr /home/default/.cache/yay \
+        && rm -fr /var/lib/pacman/sync/* \
+        && rm -fr /var/cache/pacman/pkg/* \
+        && rm -rf /tmp/yay* \
+    && \
+    echo
+
+# Install xrdp
+RUN \
+    echo "**** Install ms fonts ****" \
+        && su - default -c "yay -Syu --noconfirm --needed xrdp xorgxrdp" \
+    && \
+    echo "**** Section cleanup ****" \
+	    && pacman -Scc --noconfirm \
+        && rm -fr /home/default/.cache/yay \
+        && rm -fr /var/lib/pacman/sync/* \
+        && rm -fr /var/cache/pacman/pkg/* \
+        && rm -rf /tmp/yay* \
+    && \
+    echo
+
+
+# Add FS overlay
+COPY overlay /
+
+# Set display environment variables
+ENV \
+    DISPLAY_CDEPTH="24" \
+    DISPLAY_REFRESH="120" \
+    DISPLAY_SIZEH="900" \
+    DISPLAY_SIZEW="1600" \
+    DISPLAY_VIDEO_PORT="DFP" \
+    DISPLAY=":55"
+
+# Expose the required ports
+EXPOSE 3389
+EXPOSE 22
+
+
+# Set entrypoint
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
