@@ -333,6 +333,8 @@ EXPOSE 3389
 EXPOSE 22
 
 
-# Set entrypoint
-RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+# Use dumb-init as the entry point
+ENTRYPOINT ["/usr/local/bin/dumb-init", "--"]
+
+# Start the VNC server
+CMD ["/entrypoint"]
