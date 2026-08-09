@@ -268,13 +268,11 @@ RUN \
     echo
 
 # Various other tools
-ARG DUMB_INIT_VERSION=1.2.5
-ARG DUMB_UDEV_VERSION=64d1427
 RUN \
     echo "**** Install dumb-init ****" \
         && wget --no-check-certificate --no-cookies --quiet \
             -O /usr/bin/dumb-init \
-            https://github.com/Yelp/dumb-init/releases/download/v${DUMB_INIT_VERSION}/dumb-init_${DUMB_INIT_VERSION}_x86_64 \
+            https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_x86_64 \
         && chmod +x /usr/bin/dumb-init \
     && \
     echo "**** Install dumb-udev ****" \
@@ -283,7 +281,7 @@ RUN \
             --pre \
             --upgrade \
             --no-cache-dir \
-            git+https://github.com/Steam-Headless/dumb-udev.git@${DUMB_UDEV_VERSION} \
+            git+https://github.com/Steam-Headless/dumb-udev.git@1.0.2 \
     && \
     echo
 
