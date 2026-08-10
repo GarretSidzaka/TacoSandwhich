@@ -1,2 +1,7 @@
 # TacoSandwhich
-Arch Docker XFCE Headless
+ILLUSTRATIVE FIGURE:
+🍔🍔🍔
+🌮🌮🌮
+🍔🍔🍔
+
+Arch Docker XFCE xRDP Headless 
