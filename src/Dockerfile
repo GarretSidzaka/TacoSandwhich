@@ -138,7 +138,7 @@ RUN \
 # Install mscorefonts
 RUN \
     echo "**** Install ms fonts ****" \
-        && su - default -c "yay -Syu --noconfirm --needed ttf-msfonts" \
+        && su - default -c "yay -Syu --noconfirm --needed ttf-ms-fonts" \
     && \
     echo "**** Section cleanup ****" \
 	    && pacman -Scc --noconfirm \
@@ -301,7 +301,7 @@ RUN \
 
 # Install xrdp
 RUN \
-    echo "**** Install ms fonts ****" \
+    echo "**** Install xRDP ****" \
         && su - default -c "yay -Syu --noconfirm --needed xrdp xorgxrdp" \
     && \
     echo "**** Section cleanup ****" \
