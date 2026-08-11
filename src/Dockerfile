@@ -313,9 +313,9 @@ RUN \
     && \
     echo
 
+#FS overlay command
+COPY . ./
 
-# Add FS overlay
-COPY overlay /
 
 # Set display environment variables
 ENV \
