@@ -38,7 +38,7 @@ RUN \
 # Install core packages
 RUN \
     echo "**** Install tools ****" \
-	    && pacman -Syu --noconfirm --needed \  
+	    && pacman -Syu --noconfirm --needed \  , , , , 
             base-devel \
             bash \
             bash-completion \
@@ -49,15 +49,23 @@ RUN \
             fakeroot \
             p7zip \
             patch \
+			gcc \
             git \
+			gzip \
             jq \
             less \
+			libX11-devel \
+			libXfixes-devel \
+			libXrandr-devel \
             locate \
+			make \
             man-db \
             nano \
 			networkmanager \
             net-tools \
 			openssh \
+			openssl-devel \
+			pam-devel \
             pciutils \
             pkg-config \
             procps \
@@ -66,7 +74,8 @@ RUN \
             rsync \
             screen \
             sudo \
-            unzip \
+            tar \
+			unzip \
             vim \
             wget \
             xmlstarlet \
@@ -301,15 +310,10 @@ RUN \
 
 # Install xrdp
 RUN \
-    echo "**** Install xRDP ****" \
-        && su - default -c "yay -Syu --noconfirm --needed xrdp xorgxrdp" \
-    && \
-    echo "**** Section cleanup ****" \
-	    && pacman -Scc --noconfirm \
-        && rm -fr /home/default/.cache/yay \
-        && rm -fr /var/lib/pacman/sync/* \
-        && rm -fr /var/cache/pacman/pkg/* \
-        && rm -rf /tmp/yay* \
+    echo "**** Install xRDP from src ****" \
+    wget --no-check-certificate --no-cookies --quiet \
+            -O / \
+            https://github.com/neutrinolabs/xrdp/releases/download/v0.10.6.1/xrdp-0.10.6.1.tar.gz \
     && \
     echo
 
