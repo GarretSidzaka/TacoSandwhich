@@ -311,6 +311,7 @@ RUN \
 		&& mkdir -p /tmp/xrdp \
 		&& cd /tmp/xrdp \
 		&& wget --no-check-certificate --no-cookies -qO- https://github.com/neutrinolabs/xrdp/releases/download/v0.10.6.1/xrdp-0.10.6.1.tar.gz | gunzip | tar xvf - \
+		&& cd /tmp/xrdp/xrdp-0.10.6.1
 		&& ./bootstrap \
 		&& ./configure \
 		&& make \
