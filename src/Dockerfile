@@ -38,7 +38,7 @@ RUN \
 # Install core packages
 RUN \
     echo "**** Install tools ****" \
-	    && pacman -Syu --noconfirm --needed \  , , , , 
+	    && pacman -Syu --noconfirm --needed \
             base-devel \
             bash \
             bash-completion \
