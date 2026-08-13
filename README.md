@@ -10,4 +10,4 @@ ILLUSTRATIVE FIGURE:
 
 Arch Docker XFCE xRDP Headless 
 
-[!brick](./taco.gif)
+![brick](./taco.gif)
