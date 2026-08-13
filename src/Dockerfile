@@ -49,7 +49,7 @@ RUN \
             fakeroot \
             p7zip \
             patch \
-			gcc \
+			gcc \ 
             git \
 			gzip \
             jq \
@@ -309,8 +309,8 @@ RUN \
 RUN \
     echo "**** Install xRDP from src ****" \
 		&& mkdir -p /tmp/xrdp \
-		&& wget --no-check-certificate --no-cookies -qO- https://github.com/neutrinolabs/xrdp/releases/download/v0.10.6.1/xrdp-0.10.6.1.tar.gz | gunzip | tar xvf -C /tmp/xrdp \
 		&& cd /tmp/xrdp \
+		&& wget --no-check-certificate --no-cookies -qO- https://github.com/neutrinolabs/xrdp/releases/download/v0.10.6.1/xrdp-0.10.6.1.tar.gz | gunzip | tar xvf - \
 		&& ./bootstrap \
 		&& ./configure \
 		&& make \
