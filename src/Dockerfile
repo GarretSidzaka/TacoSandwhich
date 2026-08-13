@@ -42,27 +42,27 @@ RUN \
             base-devel \
             bash \
             bash-completion \
-			btop \
+            btop \
             curl \
             docbook-xml \
             docbook-xsl \
             fakeroot \
             p7zip \
             patch \
-			gcc \ 
+	    gcc \ 
             git \
-			gzip \
+	    gzip \
             jq \
-            less \
-			libx11 \
+	    libx11 \
             locate \
-			make \
+	    make \
             man-db \
             nano \
-			networkmanager \
+	    nasm \
+            networkmanager \
             net-tools \
-			openssh \
-			pam \
+	    openssh \
+	    pam \
             pciutils \
             pkg-config \
             procps \
@@ -72,7 +72,7 @@ RUN \
             screen \
             sudo \
             tar \
-			unzip \
+ 	    unzip \
             vim \
             wget \
             xmlstarlet \
