@@ -311,11 +311,20 @@ RUN \
 # Install xrdp
 RUN \
     echo "**** Install xRDP from src ****" \
-    wget --no-check-certificate --no-cookies --quiet \
-            -O / \
-            https://github.com/neutrinolabs/xrdp/releases/download/v0.10.6.1/xrdp-0.10.6.1.tar.gz \
-    && \
-    echo
+		&& mkdir -p /tmp/xrdp \
+		&& wget --no-check-certificate --no-cookies -qO- https://github.com/neutrinolabs/xrdp/releases/download/v0.10.6.1/xrdp-0.10.6.1.tar.gz | gunzip | tar xvf -C /tmp/xrdp \
+		&& cd /tmp/xrdp \
+		&& ./bootstrap \
+		&& ./configure \
+		&& make \
+		&& make install \
+	&& \
+	echo "**** Build cleanup ****" \
+		&& rm -fr /tmp/xrdp/*
+	&& \
+	echo
+	
+
 
 # Add FS overlay
 COPY overlay /
