@@ -54,9 +54,7 @@ RUN \
 			gzip \
             jq \
             less \
-			libX11-devel \
-			libXfixes-devel \
-			libXrandr-devel \
+			libX11 \
             locate \
 			make \
             man-db \
@@ -64,8 +62,7 @@ RUN \
 			networkmanager \
             net-tools \
 			openssh \
-			openssl-devel \
-			pam-devel \
+			pam \
             pciutils \
             pkg-config \
             procps \
