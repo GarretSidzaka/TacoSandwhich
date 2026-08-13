@@ -320,7 +320,7 @@ RUN \
 		&& make install \
 	&& \
 	echo "**** Build cleanup ****" \
-		&& rm -fr /tmp/xrdp/*
+		&& rm -fr /tmp/xrdp/* \
 	&& \
 	echo
 	
