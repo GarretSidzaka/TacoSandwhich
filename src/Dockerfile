@@ -54,7 +54,7 @@ RUN \
 			gzip \
             jq \
             less \
-			libX11 \
+			libx11 \
             locate \
 			make \
             man-db \
